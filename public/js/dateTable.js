@@ -37,8 +37,12 @@ class Calendar {
     });
   }
 
-  getInitialDate(currentDate) {
+  getInitialDate(cell, row, currentDate, cnt) {
     //1일이 몇요일인지 찾기
+    for (let i = 0; i < currentDate.getDay(); i++) {
+      cell = row.insertCell();
+      cnt += 1;
+    }
   }
 
   addDates(calendar, currentDate, numOfDaysInMonth) {
@@ -47,11 +51,7 @@ class Calendar {
     let row = calendar.insertRow();
     let cell;
 
-    //어디부터 1일이 시작하는지 알기 위한 for문..
-    for (let i = 0; i < currentDate.getDay(); i++) {
-      cell = row.insertCell();
-      cnt += 1;
-    }
+    this.getInitialDate(cell, row, currentDate, cnt);
 
     for (let i = 1; i <= numOfDaysInMonth; i++) {
       cell = row.insertCell();
